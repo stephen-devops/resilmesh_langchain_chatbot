@@ -1,0 +1,11 @@
+# requirements.txt
+
+fastapi
+pydantic
+python-dotenv
+opensearch-py
+requests
+langchain
+langchain-community
+langchain-core
+uvicorn
