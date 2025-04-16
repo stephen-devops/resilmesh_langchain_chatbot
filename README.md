@@ -28,6 +28,11 @@ npm install .
 sudo docker-compose up -d
 ```
 
+To access OpenSearch cluster, open https://localhost:9200/
+then enter the credentials 
+admin: "admin"
+password: "2022NovemberOpenSearch"
+
 ## 4. Running the app
 
 ### Backend ###
