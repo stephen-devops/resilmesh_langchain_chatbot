@@ -1,0 +1,10 @@
+OPENSEARCH_URL=https://localhost:9200
+MODEL_ID=4cRg3ZUBkXn5Nz-o9AvG
+INDEX_NAME=cti_full_metadata_repo
+CTI_INDEX_NAME=my_cti_ioc_report_repo
+CA_CERTS_PATH=C:\opensearch-2.19.0\config\root-ca.pem
+OPENSEARCH_USERNAME=admin
+OPENSEARCH_PASSWORD=2022NovemberOpenSearch
+OTX_API_KEY=fb54f5fcafc403fe8c23c72c76d1a047a44334d6b2f7b9d10cc01d9b2ea2300e
+MISP_URL=https://192.168.201.86
+MISP_API_KEY=IdP1w8JC60eiDRP9ujdHK774NNjZZGtgRy3MIV0v
