@@ -28,8 +28,7 @@ npm install .
 sudo docker-compose up -d
 ```
 
-
-## Running the app
+## 4. Running the app
 
 ### Backend ###
 
