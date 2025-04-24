@@ -1,11 +1,13 @@
 # requirements.txt
 
-fastapi
-pydantic
-python-dotenv
+fastapi~=0.115.11
+pydantic~=2.5.3
+python-dotenv~=1.0.1
 opensearch-py
-requests
-langchain
+requests~=2.32.3
+langchain~=0.3.19
 langchain-community
 langchain-core
 uvicorn
+
+urllib3~=2.3.0

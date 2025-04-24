@@ -1,13 +1,16 @@
 import os
+import sys
 import json
 import requests
 from dotenv import load_dotenv
 from opensearchpy import OpenSearch
+from openSearchCTIRetrieval.openSearchCTIAgent import CTIAgent
 
-# Load environment variables
-# Load environment variables from .env file
+
 dotenv_path = os.path.join(os.path.dirname(__file__), "../config/config_env")
 load_dotenv(dotenv_path)
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../openSearchCTIRetrieval")))
 
 # access Global CTI data sources
 # OTX API
@@ -113,44 +116,9 @@ class CTIIntegration:
     @staticmethod
     def query_opensearch(keyword: str) -> dict:
         try:
-
-            query_vector = get_opensearch_embedding(keyword)
-
-            # Define the kNN search query for vector search
-            query = {
-                "size": 1,
-                "query": {
-                    "knn": {
-                        "external_id_embedding": {  # Replace with the actual field name storing vectors
-                            "vector": query_vector,
-                            "k": 5  # Number of nearest neighbors
-                        }
-                    }
-                }
-            }
-
-            my_response = requests.post(
-                f"{opensearch_url}/{index_name}/_search",
-                json=query,
-                auth=AUTH,
-                verify=False
-            )
-            data = my_response.json()
-
-            matching_docs = data.get("hits", {}).get("hits", [])
-
-            json_response = {}
-            for doc in matching_docs:
-                source = doc.get("_source", {})
-                # print(json.dumps(source, indent=2))
-                external_id = source.get("external_id")
-                json_response[external_id] = {
-                    "external_id_embedding": source.get("external_id_embedding"),
-                    "type_embedding": source.get("type_embedding"),
-                    "url_embedding": source.get("url_embedding")
-                }
-
-            return json_response
+            agent = CTIAgent(keyword)
+            response = agent.ask(keyword)
+            return response
 
         except Exception as e:
             print(f"OpenSearch Query Error: {str(e)}")
